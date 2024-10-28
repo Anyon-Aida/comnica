@@ -1,0 +1,44 @@
+2.Feldat
+
+A gomb vagy a szülőelemei pointer-events: none; beállítást kaptak.
+A gombot egy láthatatlan elem takarja, ami blokkolja az eseményeket.
+z-index és pozicionálási problémák miatt a gomb mögé kerül egy másik elemnek.
+
+3.Feldat
+
+async function getUsersWithColors() {
+  try {
+    // Lekérjük a felhasználókat
+    const usersResponse = await fetch('https://example.com/api/users');
+    if (!usersResponse.ok) {
+      throw new Error('Hiba a felhasználók lekérésekor');
+    }
+    const users = await usersResponse.json();
+
+    // Lekérjük a színeket
+    const colorsResponse = await fetch('https://example.com/api/colors');
+    if (!colorsResponse.ok) {
+      throw new Error('Hiba a színek lekérésekor');
+    }
+    const colors = await colorsResponse.json();
+
+    // Minden felhasználóhoz rendelünk egy tetszőleges színt
+    const usersWithColors = users.map(user => {
+      const randomColor = colors[Math.floor(Math.random() * colors.length)];
+      return { ...user, color: randomColor };
+    });
+
+    console.log('Felhasználók a színekkel:', usersWithColors);
+    return usersWithColors;
+  } catch (error) {
+    console.error('Hiba történt:', error.message);
+  } finally {
+    console.log('A művelet véget ért.');
+  }
+}
+
+4.Feladat
+
+Alapvetően sok probléma nincs vele csak a kivitelezés nem szép.
+Például Material UI-ban szépen elvan készítve, hogy amikor rákkatintasz beviszi a labelt bal felső sarokban,
+így nem zavarja a felhasználót. A hiba itt azzal van, hogy így pont egymás alatt van a label és value és emiatt zavaró a szemnek.

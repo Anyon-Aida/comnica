@@ -2,20 +2,272 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@font-face {
+  src: url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600;700;800;900&display=swap');
+  font-family:'Roboto';
+  font-style: normal;
+  font-weight: 1 1000;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+
+body {
+  height: 100vh;
+  overflow-x: hidden;
+  background-image: url('/BG.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  background-color: #31363c;
+}
+
+/* Konténer */
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Fejléc */
+.header {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  opacity: 0.8;
+}
+
+.logoContainer h1 {
+  margin-left: 1rem;
+  font-size: 1.5rem;
+  color: #000;
+  font-weight: 700;
+  letter-spacing: 0.1rem;
+}
+
+/* Bal panel */
+.leftPanel {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 10%;
+  padding-right: 5%;
+}
+
+.leftContent {
+  color: #1a2825;
+  opacity: 0;
+  animation: slideInFromTop 1.5s forwards;
+  animation-delay: 1s;
+  padding-bottom: 20%;
+  max-width: 50%;
+}
+
+.leftContent h1 {
+  font-size: 3rem;
+  color: #186553;
+  font-weight: 700;
+}
+
+.leftContent p {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #31363c;
+}
+
+.imageContainer {
+  opacity: 0;
+  animation: fadeIn 1.5s forwards;
+  animation-delay: 2.5s;
+  margin-left: 2rem;
+}
+
+.leftImage {
+  width: 800px;
+  height: auto;
+}
+
+@keyframes slideInFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Jobb panel */
+.rightPanel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 2% 3%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: slideInFromRight 2s forwards;
+  overflow-x: hidden;
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rightPanel h2 {
+  color: #682c5d;
+  font-size: 2.4rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.rightPanel p {
+  color: #31363c;
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.customButton {
+  padding: 0.7rem 1.4rem;
+  font-size: 1rem;
+  width: 150px;
+  color: white;
+  background-color: #29a98b;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.customButton:hover {
+  background-color: #20876f;
+}
+
+/* Reszponzivitás */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .leftPanel {
+    flex-direction: column;
+    align-items: center;
+    padding-left: 5%;
+    padding-right: 5%;
+    text-align: center;
+    margin-top: 16rem;
+  }
+
+  .leftContent {
+    animation-delay: 1s;
+    max-width: 100%;
+    padding-bottom: 0;
+  }
+
+  .leftContent h1 {
+    font-size: 2rem;
+  }
+
+  .leftContent p {
+    font-size: 1rem;
+  }
+
+  .imageContainer {
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+
+  .leftImage {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .rightPanel {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 2rem;
+    animation: none;
+    margin-top: 2rem;
+    animation: slideInFromBottom 2s forwards;
+  }
+
+  .rightPanel h2 {
+    font-size: 1.8rem;
+  }
+
+  .rightPanel p {
+    font-size: 0.9rem;
+  }
+
+  .customButton {
+    width: auto;
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+
+@media (max-width: 576px) {
+  .leftContent h1 {
+    font-size: 1.8rem;
+  }
+
+  .leftContent p {
+    font-size: 0.9rem;
+  }
+
+  .leftImage {
+    width: 100%;
+  }
+
+  .rightPanel h2 {
+    font-size: 1.5rem;
+  }
+
+  .rightPanel p {
+    font-size: 0.8rem;
+  }
 }
